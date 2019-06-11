@@ -13,6 +13,8 @@ bool bIsRunning = true;
 int PlayerX = 1;
 int PlayerY = 1;
 
+int Clamp(int Current, int Min, int Max);
+
 int Map[10][10] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -35,7 +37,6 @@ int Input()
 
 void Tick(int KeyCode)
 {
-
 	switch (KeyCode)
 	{
 	case RIGHT:
@@ -55,6 +56,9 @@ void Tick(int KeyCode)
 		bIsRunning = false;
 		break;
 	}
+
+	PlayerX = Clamp(PlayerX, 1, 8);
+	PlayerY = Clamp(PlayerY, 1, 8);
 }
 
 void Draw()
@@ -75,6 +79,22 @@ void Draw()
 		}
 		printf("\n");
 	}
+}
+
+int Clamp(int Current, int Min, int Max)
+{
+	if (Current < Min)
+	{
+		return Min;
+	}
+
+	if (Current > Max)
+	{
+		return Max;
+	}
+
+
+	return Current;
 }
 
 
