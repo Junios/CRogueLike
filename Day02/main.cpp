@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "Util.h"
+#include <string>
 
 
 int main()
